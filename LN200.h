@@ -1,5 +1,7 @@
-#include <cstdint>
+#ifndef LN200_H
+#define LN200_H
 
+#include <cstdint>
 
 class LN200
 {
@@ -27,8 +29,17 @@ class LN200
         double _epsilon[3];
         double _omega[3];
 
-        int handle;
+        double dVx[3];
+        double dVy[3];
+        double dVz[3];
+        double dOx[3];
+        double dOy[3];
+        double dOz[3];
+
+        int _handle;
 
         void ReadIMU();
 
 };
+
+#endif
