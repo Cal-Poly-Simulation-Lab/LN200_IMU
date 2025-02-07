@@ -13,10 +13,16 @@ class LN200
         void GetQuaternion(double eta, double* epsilon);
         void GetOmega(double* omega);
         double GetOmegaZ();
+        double GetAccelZ();
+        int GetHandle();
+
+        
 
         ~LN200();
 
     private:
+        void ReadIMU();
+        
         // Scale Factors for LN200 at 400 Hz
         double gyroScaleFactor = 524228.0;
         double accelScaleFactor = 16384.0;
@@ -37,8 +43,6 @@ class LN200
         double dOz[3];
 
         int _handle;
-
-        void ReadIMU();
 
 };
 
