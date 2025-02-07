@@ -51,6 +51,9 @@ int16_t* LN200::GetBuffer()
 
 void LN200::ReadIMU()
 {
+    // Purge the buffer
+    ioctl(_handle, SYNCCOM_PURGE_RX);
+
     int words = read(_handle, _rawBuffer, sizeof(_rawBuffer));
 
     for (int i = 0; i < 13; i++)
@@ -68,12 +71,31 @@ void LN200::ReadIMU()
     */
 }
 
+double LN200::GetOmegaX()
+{
+    this->ReadIMU();
+    return this->_buffer[3]/this->gyroScaleFactor;
+}
+double LN200::GetOmegaY()
+{
+    this->ReadIMU();
+    return this->_buffer[4]/this->gyroScaleFactor;
+}
 double LN200::GetOmegaZ()
 {
     this->ReadIMU();
     return this->_buffer[5]/this->gyroScaleFactor;
 }
-
+double LN200::GetAccelX()
+{
+    this->ReadIMU();
+    return this->_buffer[0]/this->accelScaleFactor;
+}
+double LN200::GetAccelY()
+{
+    this->ReadIMU();
+    return this->_buffer[1]/this->accelScaleFactor;
+}
 double LN200::GetAccelZ()
 {
     this->ReadIMU();

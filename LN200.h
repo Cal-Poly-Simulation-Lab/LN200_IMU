@@ -12,7 +12,11 @@ class LN200
         void GetEulerAngles(double phi, double theta, double psi);
         void GetQuaternion(double eta, double* epsilon);
         void GetOmega(double* omega);
+        double GetOmegaX();
+        double GetOmegaY();
         double GetOmegaZ();
+        double GetAccelX();
+        double GetAccelY();
         double GetAccelZ();
         int GetHandle();
 
