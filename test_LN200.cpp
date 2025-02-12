@@ -18,19 +18,38 @@ int main(void)
     ofstream myFile;
     myFile.open("LN200_data.txt");
     Timer t; 
-    double ang = 0;
-    for (int i = 0; i < 5000; i++)
+    
+    int n = 5000;
+    double ax[n] {0};
+    double ay[n] {0};
+    double az[n] {0};
+    double ox[n] {0};
+    double oy[n] {0};
+    double oz[n] {0};
+    double dt[n] {0};
+
+    for (int i = 0; i < n; i++)
     {
         t.reset();
+        ax[i] =  myLN200->GetAccelX();
+        ay[i] =  myLN200->GetAccelY();
+        az[i] =  myLN200->GetAccelZ();
 
-        //cout << "Accel_z(" << i << "): " << dang*400 << endl;
-        //cout << "Time elapsed: " << dt << " seconds\n";
-        myFile << myLN200->GetAccelX() << "\t";
-        myFile << myLN200->GetAccelY() << "\t";
-        myFile << myLN200->GetAccelZ() << "\t";
-        myFile << myLN200->GetOmegaX() << "\t";
-        myFile << myLN200->GetOmegaY() << "\t";
-        myFile << myLN200->GetOmegaZ() << endl;
+        ox[i] =  myLN200->GetOmegaX();
+        ox[i] =  myLN200->GetOmegaY();
+        ox[i] =  myLN200->GetOmegaZ();
+        dt[i] = t.elapsed();
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        myFile << ax[i] << "\t";
+        myFile << ay[i] << "\t";
+        myFile << az[i] << "\t";
+        myFile << ox[i] << "\t";
+        myFile << oy[i] << "\t";
+        myFile << oz[i] << "\t";
+        myFile << dt[i] << endl;
     }
 
     myFile.close();
