@@ -36,8 +36,8 @@ int main(void)
         az[i] =  myLN200->GetAccelZ();
 
         ox[i] =  myLN200->GetOmegaX();
-        ox[i] =  myLN200->GetOmegaY();
-        ox[i] =  myLN200->GetOmegaZ();
+        oy[i] =  myLN200->GetOmegaY();
+        oz[i] =  myLN200->GetOmegaZ();
         dt[i] = t.elapsed();
     }
 
