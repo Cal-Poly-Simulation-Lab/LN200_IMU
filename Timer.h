@@ -1,4 +1,5 @@
 #include <chrono> // for std::chrono functions
+#include <thread> // for std::thread functions
 
 class Timer
 {
@@ -18,5 +19,10 @@ public:
 	double elapsed() const
 	{
 		return std::chrono::duration_cast<Second>(Clock::now() - m_beg).count();
+	}
+
+	void pause(int pauseDuration)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(pauseDuration));
 	}
 };
